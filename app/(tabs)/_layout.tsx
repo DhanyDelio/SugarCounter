@@ -5,7 +5,12 @@ export default function Layout(){
         <Tabs>
             <Tabs.Screen name="login_register" 
             options={{headerShown: false, 
-            tabBarStyle:{display: "none"}}}/>
+            tabBarStyle:{display: "none"}}}
+            />
+            <Tabs.Screen name="setup_screen"
+            options={{headerShown: false,
+            tabBarStyle : {display: "none"}}}
+            />
         </Tabs>
     )
 }

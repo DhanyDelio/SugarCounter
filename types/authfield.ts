@@ -36,3 +36,10 @@ export interface SubmitButton {
 
 }
 
+
+export interface GoogleButtonProps {
+    onPress : () => void;
+    loading?: boolean;
+   
+}
+

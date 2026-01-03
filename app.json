@@ -13,7 +13,7 @@
     },
     "android": {
       "package": "com.app.sugarchecker",
-      "googleServicesFile":"./google-services.json",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -42,7 +42,8 @@
           }
         }
       ],
-      "@react-native-firebase/auth"
+      "@react-native-firebase/auth",
+      "@react-native-google-signin/google-signin"
     ],
     "experiments": {
       "typedRoutes": true,
