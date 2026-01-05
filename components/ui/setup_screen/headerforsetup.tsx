@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { style } from "./header_style";
+import { style } from "./setup_screen_style";
 
 export default function Setupheader(){
 

@@ -27,5 +27,19 @@ export const style = StyleSheet.create({
     },
 
 
+    //ParentSetupScreen
+    container: {
+        flex: 1,
+        backgroundColor: Colors.white,
+    },
+    contentWrapper: {
+        flex: 1,
+        backgroundColor: Colors.white,
+        paddingHorizontal: 25,
+        alignItems: 'flex-start',
+        paddingTop: 10, 
+    },
+
+
 
 })
