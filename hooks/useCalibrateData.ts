@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { CalibrateData } from "@/types/calibrate";
+import React, { useState } from "react";
 
 export default function useCalibrateData(){
 
     const [data, setData] = useState<CalibrateData>({
+
         Gender : "",
         'Date of birth' :{
             date : '01',
@@ -14,6 +15,17 @@ export default function useCalibrateData(){
         Height : ""
 
     });
+
+    const [value, setValue] = React.useState<string | null>(null);
+
+
+    const startEditing = (id: string, label: string) => {
+            if(label !== 'Date of birth'){
+                setValue(id);
+            }
+    }
+
+    const stopEditing = () => setValue(null)
 
     const InputData = [
 
@@ -56,12 +68,47 @@ export default function useCalibrateData(){
     
 ];
 
+    const handleInput = (item: any) => {
+        if(item.label === 'Weight') {
+            setData((prev: any)=>({...prev,Weight : '70'}));
+        } else if (item.label === "Gender") {
+            setData((prev: any)=>({...prev,Gender : "Male"}));
 
+        }
+    }
+
+    const getFormattedValue = (label: string) => {
+        const key = label as keyof CalibrateData;
+        const currentVal = data[key]
+        const config = InputData.find(i => i.label === label);
+
+        if(typeof currentVal === 'object' && currentVal !== null) {
+            return `${currentVal.date} ${currentVal.month} ${currentVal.year}`;
+        }
+
+        if(currentVal) return `${currentVal} ${config?.unit || ''}`;
+
+        return `Input ${label}`;
+    }
+
+    const updateField = (label : string, newValue: any) =>{
+        setData(prev => ({
+            ...prev,
+            [label]: newValue
+        })); 
+    }
 
     return ({
         data,
         setData,
-        InputData
+        InputData,
+        getFormattedValue,
+        updateField,
+        handleInput,
+        value,
+        setValue,
+        startEditing,
+        stopEditing
     });
 }
 
