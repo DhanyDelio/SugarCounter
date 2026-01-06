@@ -64,6 +64,16 @@ export const style = StyleSheet.create({
         marginBottom: 2,
         fontWeight: '500'
     },
+
+    containerGender : {
+        
+        flexDirection: 'row', 
+        alignItems: 'center',
+        gap: 20,             
+        marginTop: 5,         
+        paddingVertical: 5,
+
+    },
     
     inputActive : {
         

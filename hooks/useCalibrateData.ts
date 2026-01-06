@@ -1,5 +1,6 @@
 import { CalibrateData } from "@/types/calibrate";
 import React, { useState } from "react";
+import { Keyboard } from "react-native";
 
 export default function useCalibrateData(){
 
@@ -20,9 +21,23 @@ export default function useCalibrateData(){
 
 
     const startEditing = (id: string, label: string) => {
+
+           Keyboard.dismiss();
+
+            if(label === 'Gender') {
+                const nextGender = data.Gender === 'Male' ? 'Female' : 'Male';
+                updateField('Gender', nextGender)
+                setValue(null);
+
+                return;
+            } 
+            
             if(label !== 'Date of birth'){
                 setValue(id);
+                return;
             }
+
+            setValue(id);
     }
 
     const stopEditing = () => setValue(null)
@@ -33,6 +48,7 @@ export default function useCalibrateData(){
         id: '1',
         type: 'selection',
         label: 'Gender',
+        icon : "person-outline",
         option : [
             {label : 'Male', value: 'male', icon: 'male-outline'},
             {label : 'Female', value : 'female', icon: 'female-outline'}
@@ -61,7 +77,7 @@ export default function useCalibrateData(){
         id : '4',
         type : 'numeric',
         label : 'Height',
-        icon : "human-male-height",
+        icon : "resize-outline",
         unit : 'cm',
         value : ''
     },
@@ -70,7 +86,7 @@ export default function useCalibrateData(){
 
     const handleInput = (item: any) => {
         if(item.label === 'Weight') {
-            setData((prev: any)=>({...prev,Weight : '70'}));
+            setData((prev: any)=>({...prev,Weight : ''}));
         } else if (item.label === "Gender") {
             setData((prev: any)=>({...prev,Gender : "Male"}));
 
@@ -98,6 +114,12 @@ export default function useCalibrateData(){
         })); 
     }
 
+    const handleOutsideClick = () => {
+        stopEditing();
+        Keyboard.dismiss();
+
+    }
+
     return ({
         data,
         setData,
@@ -108,7 +130,8 @@ export default function useCalibrateData(){
         value,
         setValue,
         startEditing,
-        stopEditing
+        stopEditing,
+        handleOutsideClick
     });
 }
 
