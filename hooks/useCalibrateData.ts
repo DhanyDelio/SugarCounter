@@ -1,4 +1,4 @@
-import { CalibrateData } from "@/types/calibrate";
+import { CalibrateData, InputConfig } from "@/types/calibrate";
 import React, { useState } from "react";
 import { Keyboard } from "react-native";
 
@@ -42,7 +42,7 @@ export default function useCalibrateData(){
 
     const stopEditing = () => setValue(null)
 
-    const InputData = [
+    const InputData:InputConfig[] = [
 
     {
         id: '1',
@@ -66,20 +66,20 @@ export default function useCalibrateData(){
 
     {
         id : '3',
-        type: 'numeric',
         label : 'Weight',
         icon : 'scale-outline',
         unit : 'Kg',
-        value : ''
+        value : '',
+        keyboardType: 'numeric'
     },
 
     {
         id : '4',
-        type : 'numeric',
         label : 'Height',
         icon : "resize-outline",
         unit : 'cm',
-        value : ''
+        value : '',
+        keyboardType:'numeric'
     },
     
 ];

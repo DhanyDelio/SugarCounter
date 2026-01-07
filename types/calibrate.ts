@@ -1,3 +1,5 @@
+import { KeyboardTypeOptions } from "react-native";
+
 export interface DateValue {
 
     date : string;
@@ -11,4 +13,15 @@ export interface CalibrateData {
     'Date of birth' : DateValue;
     Weight : string;
     Height : string;
+}
+
+export interface InputConfig {
+    id: string;
+    label: keyof CalibrateData;
+    icon: any;
+    unit?: string;
+    type?: string;
+    option?: any[];
+    value?: string;
+    keyboardType?:KeyboardTypeOptions;
 }
