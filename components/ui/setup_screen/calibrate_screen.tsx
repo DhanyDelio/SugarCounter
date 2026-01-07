@@ -38,7 +38,11 @@ export default function CalibrateScreen(){
 
                 <View style={style.cardContent}>
                     <Text style={style.label}>{item.label}</Text>
-                    {item.label === 'Gender' ? (
+
+                    {item.label === 'Gender' ? 
+                    
+                    (
+
                         <View style={style.containerGender}>
                             <TouchableOpacity onPress={()=> updateField('Gender', 'Male')}>
                                 <Ionicons 

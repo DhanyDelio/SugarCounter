@@ -84,14 +84,6 @@ export default function useCalibrateData(){
     
 ];
 
-    const handleInput = (item: any) => {
-        if(item.label === 'Weight') {
-            setData((prev: any)=>({...prev,Weight : ''}));
-        } else if (item.label === "Gender") {
-            setData((prev: any)=>({...prev,Gender : "Male"}));
-
-        }
-    }
 
     const getFormattedValue = (label: string) => {
         const key = label as keyof CalibrateData;
@@ -126,7 +118,6 @@ export default function useCalibrateData(){
         InputData,
         getFormattedValue,
         updateField,
-        handleInput,
         value,
         setValue,
         startEditing,
