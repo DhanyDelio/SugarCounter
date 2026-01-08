@@ -7,7 +7,7 @@ export const style = StyleSheet.create({
 
     //SetupHeaderSreen
     headerContainer : {
-        marginBottom : 30,
+        marginBottom : 65,
         marginTop : 20,
     },
 
@@ -25,6 +25,7 @@ export const style = StyleSheet.create({
         color : 'grey',
         marginTop : 5
     },
+
     //CalibrateScreen
     card : {
         flexDirection: 'row',
@@ -32,7 +33,7 @@ export const style = StyleSheet.create({
         backgroundColor: '#F9F9F9',
         padding: 16,
         borderRadius: 16,
-        marginBottom: 12,
+        marginBottom: 20,
         borderWidth: 1,
         borderColor: '#F0F0F0',
     },
@@ -46,7 +47,6 @@ export const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 15,
-        // Shadow halus biar icon menonjol
         elevation: 1,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
@@ -135,6 +135,74 @@ export const style = StyleSheet.create({
         paddingTop: 10, 
     },
 
+
+    //ModalDateandTime 
+    overlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)', 
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    ModalContainer: {
+        width: '85%', 
+        backgroundColor: '#FFFFFF',
+        borderRadius: 20,
+        padding: 24,
+        alignItems: 'center',
+        
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+       
+        elevation: 10,
+    },
+    Modaltitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: '#333',
+        marginBottom: 16,
+        letterSpacing: 0.5,
+    },
+    ModalButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width: '100%',
+        marginTop: 20,
+        gap: 20, 
+    },
+    
+
+    //CalibrateButton
+    BottomContainer: {
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        backgroundColor: '#FFFFFF',
+        borderTopColor: '#F0F0F0',
+        marginBottom: 25
+    },
+
+   
+    submitDataButton: {
+        backgroundColor: Colors.primary, 
+        paddingVertical: 16,
+        borderRadius: 14, 
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 3,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+    },
+
+    
+    ButtonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: '700', 
+        letterSpacing: 0.5,
+    }
 
 
 })

@@ -25,3 +25,13 @@ export interface InputConfig {
     value?: string;
     keyboardType?:KeyboardTypeOptions;
 }
+
+
+export interface DatePickerModal {
+    visible : boolean;
+    onConfirm :(date : Date) => void;
+    onCancel : () => void;
+    initialDate? : Date;
+
+
+}

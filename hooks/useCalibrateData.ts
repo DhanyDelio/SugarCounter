@@ -1,6 +1,7 @@
 import { CalibrateData, InputConfig } from "@/types/calibrate";
 import React, { useState } from "react";
-import { Keyboard } from "react-native";
+import { Keyboard, Platform, ToastAndroid } from "react-native";
+import dayjs from "dayjs"
 
 export default function useCalibrateData(){
 
@@ -18,6 +19,9 @@ export default function useCalibrateData(){
     });
 
     const [value, setValue] = React.useState<string | null>(null);
+    const [isModalOpen, setisModalOpen] = useState(false);
+    const [defaultBirthDate, setdefaultBirthDate] = useState(new Date(2000,0,1));
+   
 
 
     const startEditing = (id: string, label: string) => {
@@ -41,6 +45,7 @@ export default function useCalibrateData(){
     }
 
     const stopEditing = () => setValue(null)
+
 
     const InputData:InputConfig[] = [
 
@@ -112,6 +117,52 @@ export default function useCalibrateData(){
 
     }
 
+    
+
+    const handleModal = (labeitem: string)=>{
+        if (labeitem === 'Date of birth'){
+            setisModalOpen(true)
+        }
+    }
+
+    const handleConfirmDate = (dateFromPicker : Date) => {
+
+        setdefaultBirthDate(dateFromPicker);
+
+        setData(prev => ({
+            ...prev,
+            'Date of birth' : {
+                date: dayjs(dateFromPicker).format('DD'),
+                month: dayjs(dateFromPicker).format('MMMM'),
+                year: dayjs(dateFromPicker).format('YYYY')
+            }
+
+        }));
+
+        setisModalOpen(false)
+    }
+
+
+    const handleSubmitCalibrate = () => {
+        const {Gender, Weight, Height } = data;
+
+        if(!Gender || !Weight || !Height) {
+            if(Platform.OS==='android') {
+            ToastAndroid.show("Please Complete your Data", ToastAndroid.SHORT)
+        }
+
+        return;
+    }
+
+    const payload = {
+        ...data,
+        updatedAt :dayjs().format(),
+    };
+    ToastAndroid.show("Success",ToastAndroid.SHORT)
+    console.log("payload Ready :", payload);
+}
+
+
     return ({
         data,
         setData,
@@ -122,7 +173,14 @@ export default function useCalibrateData(){
         setValue,
         startEditing,
         stopEditing,
-        handleOutsideClick
+        handleOutsideClick,
+        isModalOpen,
+        setisModalOpen,
+        handleModal,
+        handleConfirmDate,
+        defaultBirthDate,
+        setdefaultBirthDate,
+        handleSubmitCalibrate
     });
 }
 

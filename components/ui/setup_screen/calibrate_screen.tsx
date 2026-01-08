@@ -4,9 +4,12 @@ import React from "react";
 import { FlatList, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { style } from "./setup_screen_style";
 import { InputConfig } from "@/types/calibrate";
+import { ModalDate } from "./simple_date_picker_modal";
+import { Colors } from "../styles/color";
 
 export default function CalibrateScreen(){
     const {
+        
         data,
         InputData,
         getFormattedValue,
@@ -14,7 +17,13 @@ export default function CalibrateScreen(){
         value,
         updateField,
         stopEditing,
-        handleOutsideClick
+        handleOutsideClick,
+        handleModal,
+        handleConfirmDate,
+        isModalOpen,
+        setisModalOpen,
+        defaultBirthDate,
+        handleSubmitCalibrate
         
     } = useCalibrateData();
         
@@ -25,14 +34,20 @@ export default function CalibrateScreen(){
         return (
             <TouchableOpacity 
                     style={style.card} 
-                    onPress={() => startEditing(id ,label)}
+                    onPress={() => {
+                        if (label === 'Date of birth') {
+                            handleModal(label);
+                        } else {
+                            startEditing(id, label);
+                        }
+                    }}
                     
                 >
                 <View style={style.cardleft}>
                     <Ionicons 
                         name={icon} 
                         size={24} 
-                        color={"#4A90E2"}
+                        color={Colors.primary}
                     />
                 </View>
 
@@ -94,12 +109,30 @@ export default function CalibrateScreen(){
     return(
         <TouchableWithoutFeedback onPress={handleOutsideClick}>
         <View style={style.flatlistcontainer}>
+            
             <FlatList
                 data={InputData}
                 renderItem={renderdata}
                 keyExtractor={({id}) => id}
                 contentContainerStyle={style.listContent}
-                keyboardShouldPersistTaps="handled"/>
+                keyboardShouldPersistTaps="handled"
+                />
+
+                <ModalDate
+                visible={isModalOpen}
+                onConfirm={handleConfirmDate}
+                onCancel={()=>setisModalOpen(false)}
+                initialDate={defaultBirthDate}
+                />
+
+                <View style={style.BottomContainer}>
+                <TouchableOpacity 
+                style={style.submitDataButton} 
+                onPress={handleSubmitCalibrate}
+                activeOpacity={0.8}>
+                <Text style={style.ButtonText}>Calibrate</Text>
+                </TouchableOpacity>
+                </View>
         </View>
         </TouchableWithoutFeedback>
     )
